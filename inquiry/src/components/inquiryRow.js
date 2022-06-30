@@ -5,20 +5,15 @@ export default class InquiryRow extends React.Component {
 
     constructor(props) {
         super(props);
-        console.log(`props - ${this.props}`);
         this.state = {
-            cells: Array(7).fill(0),
+            cells: this.props.value,
         }
     }
 
     handleClick(val, event) {
-        let cells = this.state.cells.slice();
-        if (event.nativeEvent.which === 1) {
-            cells[val] += 1;
-        } 
-        else {
-            cells[val] -= 1;
-        }
+        let cells = Object.assign({}, this.state.cells);
+        let increment = event.nativeEvent.which === 1 ? 1 : -1;
+        cells[val] += increment;
         
         this.setState({
             cells: cells,
@@ -34,12 +29,12 @@ export default class InquiryRow extends React.Component {
         return (
         <tr>
             <td> {this.props.value.name}</td>
-            <td> {this.renderCell(0)} </td>
-            <td> {this.renderCell(1)} </td>
-            <td> {this.renderCell(2)} </td>
-            <td> {this.renderCell(3)} </td>
-            <td> {this.renderCell(4)} </td>
-            <td> {this.renderCell(5)} </td>
+            <td> {this.renderCell(Object.keys(this.state.cells)[1])} </td>
+            <td> {this.renderCell(Object.keys(this.state.cells)[2])} </td>
+            <td> {this.renderCell(Object.keys(this.state.cells)[3])} </td>
+            <td> {this.renderCell(Object.keys(this.state.cells)[4])} </td>
+            <td> {this.renderCell(Object.keys(this.state.cells)[5])} </td>
+            <td> {this.renderCell(Object.keys(this.state.cells)[6])} </td>
         </tr>
         )
     };
