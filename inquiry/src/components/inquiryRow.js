@@ -18,6 +18,8 @@ export default class InquiryRow extends React.Component {
         this.setState({
             cells: cells,
         });
+
+        this.props.onChange(this.props.index, cells);
     }
 
     renderCell(val) {

@@ -10,9 +10,22 @@ export default class InquiryTable extends React.Component {
         }
     }
 
+    handleOnChange = (index, operations) =>  {
+        var docsInfo = this.state.doctors;
+        docsInfo[index] = operations;
+
+        this.setState({
+            doctors :docsInfo,
+        });
+
+        this.props.onChange(docsInfo);
+    }
+
     renderRow(index) {
         return <InquiryRow 
-                value={this.state.doctors[index]} 
+                value={this.state.doctors[index]}
+                index={index}
+                onChange={this.handleOnChange}
                 />;
     }
 
